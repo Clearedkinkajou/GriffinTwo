@@ -1,5 +1,5 @@
 package original;// Import (aka include) some stuff.
-import original.common.*;
+import common.*;
 
 /**
  * Class original.BlockManager
