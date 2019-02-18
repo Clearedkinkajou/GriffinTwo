@@ -1,4 +1,4 @@
-package task1;
+package task2;
 
 /**
  * Class original.BlockStack
@@ -26,19 +26,19 @@ class BlockStack
 	/**
 	 * Current size of the stack
 	 */
-	public int iSize = DEFAULT_SIZE;
+	private int iSize = DEFAULT_SIZE;
 
 	/**
 	 * Current top of the stack
 	 */
-	public int iTop  = 3;
+	private int iTop  = 3;
 
 	/**
 	 * stack[0:5] with four defined values
 	 */
-	public char acStack[] = new char[] {'a', 'b', 'c', 'd', '*', '*'};
+	private char acStack[] = new char[] {'a', 'b', 'c', 'd', '*', '*'};
 
-	public static int stackAccesCounter = 0;
+	private static int stackAccesCounter = 0;
 
 	/**
 	 * Default constructor
@@ -109,6 +109,18 @@ class BlockStack
 		char cBlock = this.acStack[this.iTop];
 		this.acStack[this.iTop--] = '*'; // Leave prev. value undefined
 		return cBlock;
+	}
+
+	public int getiTop() {
+		return iTop;
+	}
+
+	public static int getStackAccesCounter() {
+		return stackAccesCounter;
+	}
+
+	public int getiSize() {
+		return iSize;
 	}
 
 	public boolean isEmpty()
