@@ -1,6 +1,4 @@
-package common;
-
-import java.util.Random;
+package original.common;
 
 /**
  * Class BaseThread

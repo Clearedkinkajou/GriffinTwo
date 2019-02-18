@@ -1,4 +1,4 @@
-package common;
+package task1.common;
 
 /**
  * Class Semaphore

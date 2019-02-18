@@ -1,8 +1,8 @@
-// Import (aka include) some stuff.
-import common.*;
+package task1;// Import (aka include) some stuff.
+import task1.common.BaseThread;
 
 /**
- * Class BlockManager
+ * Class original.BlockManager
  * Implements character block "manager" and does twists with threads.
  *
  * @author Serguei A. Mokhov, mokhov@cs.concordia.ca;
@@ -311,6 +311,6 @@ public class BlockManager
 		System.err.println("Stack Trace      : ");
 		poException.printStackTrace(System.err);
 	}
-} // class BlockManager
+} // class original.BlockManager
 
 // EOF

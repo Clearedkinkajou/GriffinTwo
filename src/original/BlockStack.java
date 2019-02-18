@@ -1,5 +1,7 @@
+package original;
+
 /**
- * Class BlockStack
+ * Class original.BlockStack
  * Implements character block stack and operations upon it.
  *
  * $Revision: 1.4 $
