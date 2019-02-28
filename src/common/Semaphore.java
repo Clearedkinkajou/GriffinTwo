@@ -118,6 +118,10 @@ public class Semaphore
 	{
 		this.Signal();
 	}
+
+	public synchronized int getiValue() {
+		return iValue;
+	}
 }
 
 // EOF

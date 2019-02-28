@@ -1,4 +1,4 @@
-package task3;// Import (aka include) some stuff.
+package task4;// Import (aka include) some stuff.
 
 import common.BaseThread;
 import common.Semaphore;
@@ -13,7 +13,7 @@ import common.Semaphore;
  * $Revision: 1.5 $
  * $Last Revision Date: 2019/02/02 $
  */
-public class BlockManager3 {
+public class BlockManager4 {
     /**
      * Number of threads dumping stack
      */
@@ -21,7 +21,7 @@ public class BlockManager3 {
     /**
      * The stack itself
      */
-    private static BlockStack3 soStack = new BlockStack3();
+    private static BlockStack4 soStack = new BlockStack4();
     /**
      * Number of steps they take
      */
@@ -39,7 +39,7 @@ public class BlockManager3 {
     /**
      * s1 is to make sure phase I for all is done before any phase II begins
      */
-    //private static Semaphore s1 = new Semaphore(...);
+    private static Semaphore s1 = new Semaphore(-9);
 
     /**
      * s2 is for use in conjunction with Thread.turnTestAndSet() for phase II proceed
@@ -155,6 +155,11 @@ public class BlockManager3 {
             System.out.println("AcquireBlock thread [TID=" + this.iTID + "] starts executing.");
 
             phase1();
+            s1.V();
+
+            if(s1.getiValue() == 1){
+                System.out.println("Threads have all finished PHASE 1");
+            }
 
             mutex.P();
             try {
@@ -186,7 +191,10 @@ public class BlockManager3 {
             }
             mutex.V();
 
+            s1.P();
+            s1.V();
             phase2();
+
 
             System.out.println("AcquireBlock thread [TID=" + this.iTID + "] terminates.");
         }
@@ -205,6 +213,11 @@ public class BlockManager3 {
             System.out.println("ReleaseBlock thread [TID=" + this.iTID + "] starts executing.");
 
             phase1();
+            s1.V();
+
+            if(s1.getiValue() == 1){
+                System.out.println("Threads have all finished PHASE 1");
+            }
 
             mutex.P();
             try {
@@ -237,6 +250,8 @@ public class BlockManager3 {
             }
             mutex.V();
 
+            s1.P();
+            s1.V();
             phase2();
 
             System.out.println("ReleaseBlock thread [TID=" + this.iTID + "] terminates.");
@@ -250,29 +265,37 @@ public class BlockManager3 {
         public void run() {
 
             phase1();
+            s1.V();
+
+            if(s1.getiValue() == 1){
+                System.out.println("Threads have all finished PHASE 1");
+            }
 
             try {
                 for (int i = 0; i < siThreadSteps; i++) {
-                    mutex.P();
                     System.out.print("Stack Prober [TID=" + this.iTID + "]: Stack state: ");
 
                     // [s] - means ordinay slot of a stack
                     // (s) - current top of the stack
+                    mutex.P();
                     for (int s = 0; s < soStack.getiSize(); s++)
                         System.out.print
                                 (
-                                        (s == BlockManager3.soStack.getiTop() ? "(" : "[") +
-                                                BlockManager3.soStack.getAt(s) +
-                                                (s == BlockManager3.soStack.getiTop() ? ")" : "]")
+                                        (s == BlockManager4.soStack.getiTop() ? "(" : "[") +
+                                                BlockManager4.soStack.getAt(s) +
+                                                (s == BlockManager4.soStack.getiTop() ? ")" : "]")
                                 );
                     System.out.println(".");
                     mutex.V();
+
                 }
             } catch (Exception e) {
                 reportException(e);
                 System.exit(1);
             }
 
+            s1.P();
+            s1.V();
             phase2();
 
         }
