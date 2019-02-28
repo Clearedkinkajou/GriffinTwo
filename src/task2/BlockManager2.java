@@ -12,7 +12,7 @@ import common.BaseThread;
  * $Revision: 1.5 $
  * $Last Revision Date: 2019/02/02 $
  */
-public class BlockManager {
+public class BlockManager2 {
     /**
      * Number of threads dumping stack
      */
@@ -20,7 +20,7 @@ public class BlockManager {
     /**
      * The stack itself
      */
-    private static BlockStack soStack = new BlockStack();
+    private static BlockStack2 soStack = new BlockStack2();
     /**
      * Number of steps they take
      */
@@ -262,9 +262,9 @@ public class BlockManager {
                     for (int s = 0; s < soStack.getiSize(); s++)
                         System.out.print
                                 (
-                                        (s == BlockManager.soStack.getiTop() ? "(" : "[") +
-                                                BlockManager.soStack.getAt(s) +
-                                                (s == BlockManager.soStack.getiTop() ? ")" : "]")
+                                        (s == BlockManager2.soStack.getiTop() ? "(" : "[") +
+                                                BlockManager2.soStack.getAt(s) +
+                                                (s == BlockManager2.soStack.getiTop() ? ")" : "]")
                                 );
 
                     System.out.println(".");
