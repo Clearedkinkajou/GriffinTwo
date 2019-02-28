@@ -89,12 +89,22 @@ class BlockStack {
      * Standard push operation
      */
     public void push(final char pcBlock) {
-        stackAccesCounter++;
-        if (iSize == 0) {
-            this.acStack[++this.iTop] = 'a';
-        } else {
-            this.acStack[++this.iTop] = pcBlock;
+
+        try {
+            if (acStack[getiSize() - 1] != '*') {
+                throw new StackFullException();
+            }
+            stackAccesCounter++;
+            if (iSize == 0) {
+                this.acStack[++this.iTop] = 'a';
+            } else {
+                this.acStack[++this.iTop] = pcBlock;
+            }
         }
+        catch(StackFullException e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     /**
@@ -103,10 +113,18 @@ class BlockStack {
      * @return ex-top element of the stack, char
      */
     public char pop() {
-        stackAccesCounter++;
-        char cBlock = this.acStack[this.iTop];
-        this.acStack[this.iTop--] = '*'; // Leave prev. value undefined
-        return cBlock;
+        try {
+            if (isEmpty()) {
+                throw new StackEmptyException();
+            }
+            stackAccesCounter++;
+            char cBlock = this.acStack[this.iTop];
+            this.acStack[this.iTop--] = '*'; // Leave prev. value undefined
+            return cBlock;
+        }
+        catch(StackEmptyException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public int getiTop() {
