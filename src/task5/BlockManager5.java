@@ -194,8 +194,13 @@ public class BlockManager5 {
             s1.P();
             s1.V();
 
-            while(!turnTestAndSet());
+            mutex.P();
+            while (!turnTestAndSet()) {
+                mutex.V();
+                mutex.P();
+            }
             s2.P();
+            mutex.V();
             phase2();
             s2.V();
 
@@ -257,8 +262,13 @@ public class BlockManager5 {
             s1.P();
             s1.V();
 
-            while(!turnTestAndSet());
+            mutex.P();
+            while (!turnTestAndSet()) {
+                mutex.V();
+                mutex.P();
+            }
             s2.P();
+            mutex.V();
             phase2();
             s2.V();
 
@@ -304,8 +314,13 @@ public class BlockManager5 {
             s1.P();
             s1.V();
 
-            while(!turnTestAndSet());
+            mutex.P();
+            while (!turnTestAndSet()) {
+                mutex.V();
+                mutex.P();
+            }
             s2.P();
+            mutex.V();
             phase2();
             s2.V();
         }
