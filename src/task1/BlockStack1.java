@@ -1,7 +1,7 @@
 package task1;
 
 /**
- * Class original.BlockStack
+ * Class original.BlockStack1
  * Implements character block stack and operations upon it.
  * <p>
  * $Revision: 1.4 $
@@ -10,7 +10,7 @@ package task1;
  * @author Serguei A. Mokhov, mokhov@cs.concordia.ca;
  * Inspired by an earlier code by Prof. D. Probst
  */
-class BlockStack {
+class BlockStack1 {
     /**
      * # of letters in the English alphabet + 2
      */
@@ -41,13 +41,13 @@ class BlockStack {
     /**
      * Default constructor
      */
-    public BlockStack() {
+    public BlockStack1() {
     }
 
     /**
      * Supplied size
      */
-    public BlockStack(final int piSize) {
+    public BlockStack1(final int piSize) {
 
 
         if (piSize != DEFAULT_SIZE) {

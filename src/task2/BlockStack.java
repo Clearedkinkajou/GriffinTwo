@@ -48,8 +48,6 @@ class BlockStack {
      * Supplied size
      */
     public BlockStack(final int piSize) {
-
-
         if (piSize != DEFAULT_SIZE) {
             this.acStack = new char[piSize];
 
@@ -71,6 +69,8 @@ class BlockStack {
      * @return top element of the stack, char
      */
     public char pick() {
+
+        //if empty
         stackAccesCounter++;
         return this.acStack[this.iTop];
     }
@@ -81,6 +81,7 @@ class BlockStack {
      * @return the element, char
      */
     public char getAt(final int piPosition) {
+        //array out of bounds
         stackAccesCounter++;
         return this.acStack[piPosition];
     }
@@ -89,7 +90,6 @@ class BlockStack {
      * Standard push operation
      */
     public void push(final char pcBlock) {
-
         try {
             if (acStack[getiSize() - 1] != '*') {
                 throw new StackFullException();
@@ -104,7 +104,6 @@ class BlockStack {
         catch(StackFullException e){
             System.out.println(e.getMessage());
         }
-
     }
 
     /**

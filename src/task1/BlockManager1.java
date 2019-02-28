@@ -3,7 +3,7 @@ package task1;// Import (aka include) some stuff.
 import common.BaseThread;
 
 /**
- * Class original.BlockManager
+ * Class original.BlockManager1
  * Implements character block "manager" and does twists with threads.
  *
  * @author Serguei A. Mokhov, mokhov@cs.concordia.ca;
@@ -12,11 +12,11 @@ import common.BaseThread;
  * $Revision: 1.5 $
  * $Last Revision Date: 2019/02/02 $
  */
-public class BlockManager {
+public class BlockManager1 {
     /**
      * The stack itself
      */
-    private static BlockStack soStack = new BlockStack();
+    private static BlockStack1 soStack = new BlockStack1();
 
     /**
      * Number of threads dumping stack
@@ -255,9 +255,9 @@ public class BlockManager {
                     for (int s = 0; s < soStack.iSize; s++)
                         System.out.print
                                 (
-                                        (s == BlockManager.soStack.iTop ? "(" : "[") +
-                                                BlockManager.soStack.getAt(s) +
-                                                (s == BlockManager.soStack.iTop ? ")" : "]")
+                                        (s == BlockManager1.soStack.iTop ? "(" : "[") +
+                                                BlockManager1.soStack.getAt(s) +
+                                                (s == BlockManager1.soStack.iTop ? ")" : "]")
                                 );
 
                     System.out.println(".");
@@ -286,6 +286,6 @@ public class BlockManager {
         System.err.println("Stack Trace      : ");
         poException.printStackTrace(System.err);
     }
-} // class original.BlockManager
+} // class original.BlockManager1
 
 // EOF

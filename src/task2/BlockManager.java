@@ -3,7 +3,7 @@ package task2;// Import (aka include) some stuff.
 import common.BaseThread;
 
 /**
- * Class original.BlockManager
+ * Class original.BlockManager1
  * Implements character block "manager" and does twists with threads.
  *
  * @author Serguei A. Mokhov, mokhov@cs.concordia.ca;
@@ -14,15 +14,13 @@ import common.BaseThread;
  */
 public class BlockManager {
     /**
-     * The stack itself
-     */
-    private static BlockStack soStack = new BlockStack();
-
-    /**
      * Number of threads dumping stack
      */
     private static final int NUM_PROBERS = 4;
-
+    /**
+     * The stack itself
+     */
+    private static BlockStack soStack = new BlockStack();
     /**
      * Number of steps they take
      */
@@ -130,6 +128,17 @@ public class BlockManager {
         }
     } // main()
 
+    /**
+     * Outputs exception information to STDERR
+     *
+     * @param poException Exception object to dump to STDERR
+     */
+    private static void reportException(Exception poException) {
+        System.err.println("Caught exception : " + poException.getClass().getName());
+        System.err.println("Message          : " + poException.getMessage());
+        System.err.println("Stack Trace      : ");
+        poException.printStackTrace(System.err);
+    }
 
     /**
      * Inner AcquireBlock thread class.
@@ -182,7 +191,6 @@ public class BlockManager {
             System.out.println("AcquireBlock thread [TID=" + this.iTID + "] terminates.");
         }
     } // class AcquireBlock
-
 
     /**
      * Inner class ReleaseBlock.
@@ -237,7 +245,6 @@ public class BlockManager {
         }
     } // class ReleaseBlock
 
-
     /**
      * Inner class CharStackProber to dump stack contents.
      */
@@ -273,19 +280,6 @@ public class BlockManager {
 
         }
     } // class CharStackProber
-
-
-    /**
-     * Outputs exception information to STDERR
-     *
-     * @param poException Exception object to dump to STDERR
-     */
-    private static void reportException(Exception poException) {
-        System.err.println("Caught exception : " + poException.getClass().getName());
-        System.err.println("Message          : " + poException.getMessage());
-        System.err.println("Stack Trace      : ");
-        poException.printStackTrace(System.err);
-    }
-} // class original.BlockManager
+} // class original.BlockManager1
 
 // EOF
