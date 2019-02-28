@@ -90,7 +90,11 @@ class BlockStack {
      */
     public void push(final char pcBlock) {
         stackAccesCounter++;
-        this.acStack[++this.iTop] = pcBlock;
+        if (iSize == 0) {
+            this.acStack[++this.iTop] = 'a';
+        } else {
+            this.acStack[++this.iTop] = pcBlock;
+        }
     }
 
     /**
