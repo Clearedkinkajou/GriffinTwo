@@ -124,6 +124,7 @@ class BlockStack {
         }
         catch(StackEmptyException e){
             System.out.println(e.getMessage());
+            return '*';
         }
     }
 
