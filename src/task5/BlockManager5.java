@@ -157,7 +157,7 @@ public class BlockManager5 {
             phase1();
             s1.V();
 
-            if(s1.getiValue() == 1){
+            if (s1.getiValue() == 1) {
                 System.out.println("Threads have all finished PHASE 1");
             }
 
@@ -194,8 +194,13 @@ public class BlockManager5 {
             s1.P();
             s1.V();
 
+            boolean notPrinted = true;
             mutex.P();
             while (!turnTestAndSet()) {
+                if (notPrinted) {
+                    System.out.println("Thread [TID=" + this.iTID + "] has attempted to start phase II but is waiting on another thread");
+                    notPrinted = false;
+                }
                 mutex.V();
                 mutex.P();
             }
@@ -203,7 +208,9 @@ public class BlockManager5 {
             mutex.V();
             phase2();
             s2.V();
-
+            s1.V();
+            if (s1.getiValue() == 11)
+                System.out.println("Threads have all finished PHASE II");
 
             System.out.println("AcquireBlock thread [TID=" + this.iTID + "] terminates.");
         }
@@ -224,7 +231,7 @@ public class BlockManager5 {
             phase1();
             s1.V();
 
-            if(s1.getiValue() == 1){
+            if (s1.getiValue() == 1) {
                 System.out.println("Threads have all finished PHASE 1");
             }
 
@@ -262,8 +269,13 @@ public class BlockManager5 {
             s1.P();
             s1.V();
 
+            boolean notPrinted = true;
             mutex.P();
             while (!turnTestAndSet()) {
+                if (notPrinted) {
+                    System.out.println("Thread [TID=" + this.iTID + "] has attempted to start phase II but is waiting on another thread");
+                    notPrinted = false;
+                }
                 mutex.V();
                 mutex.P();
             }
@@ -271,6 +283,9 @@ public class BlockManager5 {
             mutex.V();
             phase2();
             s2.V();
+            s1.V();
+            if (s1.getiValue() == 11)
+                System.out.println("Threads have all finished PHASE II");
 
             System.out.println("ReleaseBlock thread [TID=" + this.iTID + "] terminates.");
         }
@@ -285,7 +300,7 @@ public class BlockManager5 {
             phase1();
             s1.V();
 
-            if(s1.getiValue() == 1){
+            if (s1.getiValue() == 1) {
                 System.out.println("Threads have all finished PHASE 1");
             }
 
@@ -314,8 +329,13 @@ public class BlockManager5 {
             s1.P();
             s1.V();
 
+            boolean notPrinted = true;
             mutex.P();
             while (!turnTestAndSet()) {
+                if (notPrinted) {
+                    System.out.println("Thread [TID=" + this.iTID + "] has attempted to start phase II but is waiting on another thread");
+                    notPrinted = false;
+                }
                 mutex.V();
                 mutex.P();
             }
@@ -323,6 +343,9 @@ public class BlockManager5 {
             mutex.V();
             phase2();
             s2.V();
+            s1.V();
+            if (s1.getiValue() == 11)
+                System.out.println("Threads have all finished PHASE II");
         }
     } // class CharStackProber
 } // class original.BlockManager1
