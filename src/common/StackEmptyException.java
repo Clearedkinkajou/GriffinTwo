@@ -1,4 +1,4 @@
-package task2;
+package common;
 
 public class StackEmptyException extends Exception {
 

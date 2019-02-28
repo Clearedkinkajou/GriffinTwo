@@ -1,11 +1,11 @@
-package task2;
+package task3;
 
 import common.StackEmptyException;
 import common.StackFullException;
 import common.StackOutOfBoundsAccessException;
 
 /**
- * Class original.BlockStack2
+ * Class original.BlockStack3
  * Implements character block stack and operations upon it.
  * <p>
  * $Revision: 1.4 $
@@ -14,7 +14,7 @@ import common.StackOutOfBoundsAccessException;
  * @author Serguei A. Mokhov, mokhov@cs.concordia.ca;
  * Inspired by an earlier code by Prof. D. Probst
  */
-class BlockStack2 {
+class BlockStack3 {
     /**
      * # of letters in the English alphabet + 2
      */
@@ -45,13 +45,13 @@ class BlockStack2 {
     /**
      * Default constructor
      */
-    public BlockStack2() {
+    public BlockStack3() {
     }
 
     /**
      * Supplied size
      */
-    public BlockStack2(final int piSize) {
+    public BlockStack3(final int piSize) {
         if (piSize != DEFAULT_SIZE) {
             this.acStack = new char[piSize];
 
