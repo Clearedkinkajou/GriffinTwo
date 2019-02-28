@@ -1,6 +1,7 @@
 package task3;// Import (aka include) some stuff.
 
 import common.BaseThread;
+import common.Semaphore;
 
 /**
  * Class original.BlockManager1
@@ -29,7 +30,7 @@ public class BlockManager3 {
     /**
      * For atomicity
      */
-    //private static Semaphore mutex = new Semaphore(...);
+    private static Semaphore mutex = new Semaphore(1);
 
     /*
      * For synchronization
@@ -156,7 +157,7 @@ public class BlockManager3 {
 
             phase1();
 
-
+            mutex.P();
             try {
                 System.out.println("AcquireBlock thread [TID=" + this.iTID + "] requests Ms block.");
 
@@ -184,9 +185,9 @@ public class BlockManager3 {
                 reportException(e);
                 System.exit(1);
             }
+            mutex.V();
 
             phase2();
-
 
             System.out.println("AcquireBlock thread [TID=" + this.iTID + "] terminates.");
         }
@@ -207,7 +208,7 @@ public class BlockManager3 {
 
             phase1();
 
-
+            mutex.P();
             try {
                 if (soStack.isEmpty() == false)
                     this.cBlock = (char) (soStack.pick() + 1);
@@ -236,6 +237,7 @@ public class BlockManager3 {
                 reportException(e);
                 System.exit(1);
             }
+            mutex.V();
 
 
             phase2();
@@ -252,13 +254,13 @@ public class BlockManager3 {
         public void run() {
             phase1();
 
-
             try {
                 for (int i = 0; i < siThreadSteps; i++) {
                     System.out.print("Stack Prober [TID=" + this.iTID + "]: Stack state: ");
 
                     // [s] - means ordinay slot of a stack
                     // (s) - current top of the stack
+                    mutex.P();
                     for (int s = 0; s < soStack.getiSize(); s++)
                         System.out.print
                                 (
@@ -266,14 +268,15 @@ public class BlockManager3 {
                                                 BlockManager3.soStack.getAt(s) +
                                                 (s == BlockManager3.soStack.getiTop() ? ")" : "]")
                                 );
-
                     System.out.println(".");
+                    mutex.V();
 
                 }
             } catch (Exception e) {
                 reportException(e);
                 System.exit(1);
             }
+
 
 
             phase2();
